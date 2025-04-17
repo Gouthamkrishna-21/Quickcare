@@ -1,0 +1,959 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quick Care - Healthcare Services</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        body {
+            background-color: #f0f4f8;
+            color: #333;
+        }
+
+        /* Header Styles */
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 50px;
+            background-color: #fff;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            font-size: 24px;
+            font-weight: 600;
+            color: #1e90ff;
+        }
+
+        .logo img {
+            width: 40px;
+            margin-right: 10px;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 20px;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: #1e90ff;
+            font-weight: 400;
+            transition: color 0.3s;
+        }
+
+        .nav-links a:hover {
+            color: #187bcd;
+        }
+
+        /* New Homepage Section */
+        .homepage {
+            min-height: 90vh;
+            position: relative;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            background-color: #f0f4f8;
+        }
+
+        .hero-left {
+            padding: 80px 50px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .hero-right {
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero-image {
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .overlay {
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, rgba(240,244,248,1) 0%, rgba(240,244,248,0) 30%);
+        }
+
+        .tagline {
+            margin-bottom: 40px;
+        }
+
+        .tagline h1 {
+            font-size: 48px;
+            line-height: 1.2;
+            margin-bottom: 20px;
+            color: #333;
+        }
+
+        .tagline h1 span {
+            color: #1e90ff;
+            display: block;
+        }
+
+        .tagline p {
+            font-size: 18px;
+            color: #666;
+            max-width: 500px;
+            margin-bottom: 30px;
+        }
+
+        .search-box {
+            position: relative;
+            max-width: 500px;
+            margin-bottom: 30px;
+        }
+
+        .search-box input {
+            width: 100%;
+            padding: 15px 20px;
+            font-size: 16px;
+            border: none;
+            border-radius: 50px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .search-box button {
+            position: absolute;
+            right: 5px;
+            top: 5px;
+            background-color: #1e90ff;
+            color: white;
+            border: none;
+            border-radius: 50px;
+            padding: 10px 20px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .search-box button:hover {
+            background-color: #187bcd;
+        }
+
+        .stats-cards {
+            display: flex;
+            gap: 20px;
+            margin-top: 40px;
+        }
+
+        .stat-card {
+            background-color: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            flex: 1;
+            text-align: center;
+        }
+
+        .stat-card .number {
+            font-size: 24px;
+            font-weight: 600;
+            color: #1e90ff;
+            margin-bottom: 5px;
+        }
+
+        .stat-card .label {
+            font-size: 14px;
+            color: #666;
+        }
+
+        .user-actions {
+            display: flex;
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .user-actions button {
+            padding: 12px 25px;
+            border-radius: 50px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .login-btn {
+            background-color: transparent;
+            color: #1e90ff;
+            border: 2px solid #1e90ff;
+        }
+
+        .login-btn:hover {
+            background-color: #e6f0fa;
+        }
+
+        .signup-btn {
+            background-color: #1e90ff;
+            color: white;
+            border: 2px solid #1e90ff;
+        }
+
+        .signup-btn:hover {
+            background-color: #187bcd;
+            transform: translateY(-2px);
+        }
+
+        /* Rest of the existing styles remain unchanged */
+        /* Search Results Section */
+        .search-results {
+            padding: 50px;
+            background-color: #fff;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+        }
+
+        .search-results h2 {
+            font-size: 28px;
+            color: #1e90ff;
+            margin-bottom: 30px;
+        }
+
+        .search-container {
+            display: flex;
+            gap: 30px;
+        }
+
+        .search-filters {
+            width: 20%;
+        }
+
+        .search-filters h3 {
+            font-size: 20px;
+            color: #1e90ff;
+            margin-bottom: 15px;
+        }
+
+        .search-filters ul {
+            list-style: none;
+            margin-bottom: 20px;
+        }
+
+        .search-filters ul li {
+            padding: 8px 0;
+            color: #666;
+            cursor: pointer;
+            transition: color 0.3s;
+        }
+
+        .search-filters ul li:hover {
+            color: #1e90ff;
+        }
+
+        .search-filters .filter {
+            border: 1px solid #ddd;
+            padding: 15px;
+            border-radius: 10px;
+            background-color: #f9f9f9;
+        }
+
+        .search-list {
+            width: 50%;
+        }
+
+        .search-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px;
+            border: 1px solid #ddd;
+            border-radius: 10px;
+            margin-bottom: 15px;
+            background-color: #fff;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .search-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .search-item .info h4 {
+            font-size: 20px;
+            color: #1e90ff;
+            margin-bottom: 5px;
+        }
+
+        .search-item .info p {
+            color: #666;
+            margin-bottom: 5px;
+        }
+
+        .search-item .info .rating {
+            color: #ffd700;
+        }
+
+        .search-item .book {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .search-item .book span {
+            font-size: 18px;
+            font-weight: 600;
+            color: #333;
+        }
+
+        .search-item .book button {
+            padding: 10px 20px;
+            background-color: #1e90ff;
+            color: #fff;
+            border: none;
+            border-radius: 25px;
+            cursor: pointer;
+            transition: background-color 0.3s, transform 0.2s;
+        }
+
+        .search-item .book button:hover {
+            background-color: #187bcd;
+            transform: translateY(-2px);
+        }
+
+        .search-map {
+            width: 30%;
+            border-radius: 10px;
+            height: 300px;
+            overflow: hidden;
+        }
+
+        .search-map img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        /* More Doctors Section */
+        .more-doctors {
+            padding: 60px 50px;
+            background-color: #f9f9f9;
+            text-align: center;
+        }
+
+        .more-doctors h2 {
+            font-size: 32px;
+            color: #1e90ff;
+            margin-bottom: 40px;
+        }
+
+        .doctors-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .doctor-card {
+            background-color: #fff;
+            border: 1px solid #ddd;
+            border-radius: 10px;
+            padding: 20px;
+            text-align: left;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .doctor-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .doctor-card img {
+            width: 100%;
+            height: 150px;
+            object-fit: cover;
+            border-radius: 10px;
+            margin-bottom: 15px;
+        }
+
+        .doctor-card h4 {
+            font-size: 20px;
+            color: #1e90ff;
+            margin-bottom: 5px;
+        }
+
+        .doctor-card p {
+            font-size: 14px;
+            color: #666;
+            margin-bottom: 5px;
+        }
+
+        .doctor-card .specialty {
+            font-weight: 600;
+            color: #333;
+        }
+
+        /* Doctor Profile Section */
+        .doctor-profile {
+            padding: 50px;
+            background-color: #fff;
+            display: flex;
+            gap: 30px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+        }
+
+        .doctor-profile h2 {
+            font-size: 28px;
+            color: #1e90ff;
+            margin-bottom: 20px;
+        }
+
+        .doctor-profile .info {
+            width: 50%;
+        }
+
+        .doctor-profile .info h3 {
+            font-size: 20px;
+            color: #1e90ff;
+            margin-bottom: 15px;
+        }
+
+        .doctor-profile .info .section {
+            border: 1px solid #ddd;
+            padding: 20px;
+            border-radius: 10px;
+            margin-bottom: 15px;
+            background-color: #f9f9f9;
+        }
+
+        .doctor-profile .info .section p {
+            margin: 8px 0;
+            color: #666;
+        }
+
+        .doctor-profile .image {
+            width: 50%;
+        }
+
+        .doctor-profile .image img {
+            max-width: 100%;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Booking Section */
+        .booking {
+            padding: 50px;
+            background-color: #fff;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+        }
+
+        .booking h2 {
+            font-size: 32px;
+            color: #1e90ff;
+            margin-bottom: 30px;
+        }
+
+        .booking .info p {
+            margin: 8px 0;
+            color: #666;
+        }
+
+        .booking .info .rating {
+            color: #ffd700;
+        }
+
+        .booking .appointment {
+            margin: 30px 0;
+        }
+
+        .booking .appointment h3 {
+            font-size: 20px;
+            color: #1e90ff;
+            margin-bottom: 15px;
+        }
+
+        .booking .appointment input {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #ddd;
+            border-radius: 25px;
+            margin-bottom: 15px;
+            transition: border-color 0.3s;
+        }
+
+        .booking .appointment input:focus {
+            outline: none;
+            border-color: #1e90ff;
+        }
+
+        .booking .appointment .options {
+            display: flex;
+            gap: 20px;
+        }
+
+        .booking .appointment .options label {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            color: #666;
+        }
+
+        .booking .user-info h3 {
+            font-size: 20px;
+            color: #1e90ff;
+            margin-bottom: 15px;
+        }
+
+        .booking .user-info input {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #ddd;
+            border-radius: 25px;
+            margin-bottom: 15px;
+            transition: border-color 0.3s;
+        }
+
+        .booking .user-info input:focus {
+            outline: none;
+            border-color: #1e90ff;
+        }
+
+        .booking button {
+            padding: 12px 30px;
+            background-color: #1e90ff;
+            color: #fff;
+            border: none;
+            border-radius: 25px;
+            cursor: pointer;
+            font-size: 16px;
+            font-weight: 500;
+            transition: background-color 0.3s, transform 0.2s;
+        }
+
+        .booking button:hover {
+            background-color: #187bcd;
+            transform: translateY(-2px);
+        }
+
+        /* Confirmation Section */
+        .confirmation {
+            padding: 80px 50px;
+            text-align: center;
+            background-color: #fff;
+            display: none;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+        }
+
+        .confirmation .icon {
+            font-size: 60px;
+            color: #28a745;
+            margin-bottom: 20px;
+        }
+
+        .confirmation h2 {
+            font-size: 28px;
+            color: #1e90ff;
+            margin-bottom: 20px;
+        }
+
+        .confirmation p {
+            margin: 8px 0;
+            color: #666;
+        }
+
+        .confirmation button {
+            padding: 12px 30px;
+            background-color: #1e90ff;
+            color: #fff;
+            border: none;
+            border-radius: 25px;
+            cursor: pointer;
+            font-size: 16px;
+            font-weight: 500;
+            margin-top: 20px;
+            transition: background-color 0.3s, transform 0.2s;
+        }
+
+        .confirmation button:hover {
+            background-color: #187bcd;
+            transform: translateY(-2px);
+        }
+
+        /* Error Message */
+        .error {
+            color: red;
+            font-size: 14px;
+            margin-top: 5px;
+            display: none;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .header {
+                padding: 15px 20px;
+            }
+
+            .nav-links {
+                gap: 10px;
+            }
+
+            .nav-links a {
+                font-size: 14px;
+            }
+
+            .homepage {
+                grid-template-columns: 1fr;
+            }
+
+            .hero-left {
+                padding: 50px 20px;
+                text-align: center;
+            }
+
+            .hero-right {
+                display: none;
+            }
+
+            .tagline h1 {
+                font-size: 32px;
+            }
+
+            .tagline p {
+                margin: 0 auto 30px;
+            }
+
+            .search-box {
+                margin: 0 auto 30px;
+            }
+
+            .stats-cards {
+                flex-direction: column;
+                gap: 15px;
+            }
+
+            .user-actions {
+                justify-content: center;
+            }
+
+            .search-results {
+                padding: 30px 20px;
+            }
+
+            .search-container {
+                flex-direction: column;
+            }
+
+            .search-filters, .search-list, .search-map {
+                width: 100%;
+            }
+
+            .search-map {
+                height: 200px;
+            }
+
+            .more-doctors {
+                padding: 40px 20px;
+            }
+
+            .doctors-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .doctor-profile {
+                flex-direction: column;
+                padding: 30px 20px;
+            }
+
+            .doctor-profile .info, .doctor-profile .image {
+                width: 100%;
+            }
+
+            .booking {
+                padding: 30px 20px;
+            }
+
+            .confirmation {
+                padding: 50px 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header (Now separate from homepage) -->
+    <div class="header">
+        <div class="logo">
+            <img src="images/quick-care-logo.jpg" alt="Quick Care Logo">
+            Quick Care
+        </div>
+        <div class="nav-links">
+            <a href="#search-results">Search</a>
+            <a href="#more-doctors">Doctors</a>
+            <a href="#booking-section">Book</a>
+        </div>
+    </div>
+
+    <!-- Homepage - New Design -->
+    <section class="homepage">
+        <div class="hero-left">
+            <div class="tagline">
+                <h1>Find the best <span>doctor</span> near you</h1>
+                <p>Book appointments with top-rated doctors instantly. QuickCare connects you with healthcare professionals in your area 24/7.</p>
+            </div>
+            <div class="search-box">
+                <input type="text" placeholder="Search for doctors, specialties, or conditions">
+                <button>Find Doctors</button>
+            </div>
+            <div class="user-actions">
+                <button class="login-btn">Login</button>
+                <button class="signup-btn">Sign Up</button>
+            </div>
+            <div class="stats-cards">
+                <div class="stat-card">
+                    <div class="number">240+</div>
+                    <div class="label">Verified Doctors</div>
+                </div>
+                <div class="stat-card">
+                    <div class="number">Book Now</div>
+                    <div class="label">Book your appointment now and be our first customer!</div>
+                </div>
+            </div>
+        </div>
+        <div class="hero-right">
+            <img src="images/doctor_1.jpg" alt="Doctor with Patient" class="hero-image">
+            <div class="overlay"></div>
+        </div>
+    </section>
+
+    <!-- Search Results -->
+    <section class="search-results" id="search-results">
+        <h2>Search Results for: Cardiologist in Hyderabad</h2>
+        <div class="search-container">
+            <div class="search-filters">
+                <h3>Sort by</h3>
+                <ul>
+                    <li>Rating</li>
+                    <li>Fees</li>
+                    <li>Distance</li>
+                </ul>
+                <h3>Filter</h3>
+                <div class="filter">
+                    <p>Cardiology</p>
+                </div>
+            </div>
+            <div class="search-list">
+                <div class="search-item">
+                    <div class="info">
+                        <h4>Apollo Hospital</h4>
+                        <p>Hyderabad</p>
+                        <p class="rating">★★★★★ Cardiology</p>
+                    </div>
+                    <div class="book">
+                        <span>₹500</span>
+                        <button>Book Appointment</button>
+                    </div>
+                </div>
+                <div class="search-item">
+                    <div class="info">
+                        <h4>Dr. Rajesh Kumar</h4>
+                        <p>Hyderabad</p>
+                        <p class="rating">★★★★★ Cardiology</p>
+                    </div>
+                    <div class="book">
+                        <span>₹500</span>
+                        <button>Book Appointment</button>
+                    </div>
+                </div>
+                <div class="search-item">
+                    <div class="info">
+                        <h4>Global Hospitals</h4>
+                        <p>Hyderabad</p>
+                        <p class="rating">★★★★★ Cardiology</p>
+                    </div>
+                    <div class="book">
+                        <span>₹550</span>
+                        <button>Book Appointment</button>
+                    </div>
+                </div>
+            </div>
+            <div class="search-map">
+                <img src="images/search-map.jpg" alt="Map with Hospital Pin">
+            </div>
+        </div>
+    </section>
+
+    <!-- More Doctors Section -->
+    <section class="more-doctors" id="more-doctors">
+        <h2>Explore More Doctors</h2>
+        <div class="doctors-grid">
+            <div class="doctor-card">
+                <img src="images/doctor-sarah.jpg" alt="Dr. Sarah Johnson">
+                <h4>Dr. Sarah Johnson</h4>
+                <p class="specialty">General Physician</p>
+                <p>Metro Clinic, Mumbai</p>
+                <p>Experience: 8+ Years</p>
+                <p>Fee: ₹400</p>
+                <p>Services: General Checkups, Fever Treatment</p>
+            </div>
+            <div class="doctor-card">
+                <img src="images/doctor-anil.jpg" alt="Dr. Anil Sharma">
+                <h4>Dr. Anil Sharma</h4>
+                <p class="specialty">Dentist</p>
+                <p>Sunrise Hospital, Delhi</p>
+                <p>Experience: 12+ Years</p>
+                <p>Fee: ₹600</p>
+                <p>Services: Dental Cleaning, Root Canal</p>
+            </div>
+            <div class="doctor-card">
+                <img src="images/doctor-priya.jpg" alt="Dr. Priya Menon">
+                <h4>Dr. Priya Menon</h4>
+                <p class="specialty">Orthopedic Surgeon</p>
+                <p>City Hospital, Bangalore</p>
+                <p>Experience: 10+ Years</p>
+                <p>Fee: ₹800</p>
+                <p>Services: Joint Replacement, Fracture Care</p>
+            </div>
+            <div class="doctor-card">
+                <img src="images/doctor-vikram.jpg" alt="Dr. Vikram Patel">
+                <h4>Dr. Vikram Patel</h4>
+                <p class="specialty">Pediatrician</p>
+                <p>Green Valley Clinic, Chennai</p>
+                <p>Experience: 7+ Years</p>
+                <p>Fee: ₹450</p>
+                <p>Services: Child Vaccination, Growth Monitoring</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Doctor Profile -->
+    <section class="doctor-profile">
+        <h2>Doctor Profile</h2>
+        <div class="info">
+            <div class="section">
+                <h3>Hospital Information</h3>
+                <p><strong>Location:</strong> Apollo Hospitals, Hyd</p>
+                <p><strong>Rating:</strong> 4.6/5</p>
+                <p><strong>Specialization:</strong> Cardiology</p>
+            </div>
+            <div class="section">
+                <h3>Doctor Information</h3>
+                <p><strong>Dr Ibrahim – Senior Cardiologist</strong></p>
+                <p><strong>Experience:</strong> 15+ Years</p>
+                <p><strong>Contact:</strong> 91 6578778890</p>
+                <p><strong>Fee:</strong> 500/-</p>
+                <p><strong>Services Offered:</strong> ECG, Heart Checkups</p>
+                <p><strong>Schedule:</strong> Online</p>
+            </div>
+        </div>
+        <div class="image">
+            <img src="images/hospital-exterior.jpg" alt="City Hospital Exterior">
+        </div>
+    </section>
+
+    <!-- Booking -->
+    <section class="booking" id="booking-section">
+        <h2>Book Appointment</h2>
+        <div class="info">
+            <p><strong>Apollo Hospitals</strong></p>
+            <p>Hyderabad</p>
+            <p>Dr Ibrahim</p>
+            <p>Cardiology</p>
+            <p class="rating">4.5 ★ <span>₹500 (online) (₹700 In-person)</span></p>
+        </div>
+        <div class="appointment">
+            <h3>Appointment Select</h3>
+            <input type="text" id="date-time" placeholder="Choose date, time slot">
+            <div class="options">
+                <label><input type="radio" name="mode" value="In-Person" checked> In-Person</label>
+                <label><input type="radio" name="mode" value="Online"> Online (videocall)</label>
+            </div>
+        </div>
+        <div class="user-info">
+            <h3>User Information</h3>
+            <input type="text" id="user-name" placeholder="Your Name">
+            <input type="text" id="user-phone" placeholder="Phone Number">
+            <p class="error" id="error-message">Please fill in all required fields.</p>
+        </div>
+        <button onclick="confirmBooking()">Book Now</button>
+    </section>
+
+    <!-- Confirmation -->
+    <section class="confirmation" id="confirmation-section">
+        <div class="icon">✔</div>
+        <h2>Appointment Confirmed</h2>
+        <p id="doctor-name">Dr. Ibrahim – Cardiologist</p>
+        <p id="hospital-name">Apollo Hospitals, Hyderabad</p>
+        <p id="appointment-time">April 8, 2025 at 10:00 AM</p>
+        <p id="appointment-mode">Mode: In-Person</p>
+        <p id="booking-id">Booking ID: #QC12345</p>
+        <p>Thank you for choosing Quick Care. You will receive a confirmation message shortly.</p>
+        <button onclick="goToHome()">Go to Home</button>
+    </section>
+
+    <script>
+        // Function to handle booking confirmation
+        function confirmBooking() {
+            // Get form inputs
+            const userName = document.getElementById('user-name').value.trim();
+            const userPhone = document.getElementById('user-phone').value.trim();
+            const dateTime = document.getElementById('date-time').value.trim();
+            const mode = document.querySelector('input[name="mode"]:checked').value;
+            const errorMessage = document.getElementById('error-message');
+
+            // Validate inputs
+            if (!userName || !userPhone || !dateTime) {
+                errorMessage.style.display = 'block';
+                return;
+            }
+
+            // Hide error message if validation passes
+            errorMessage.style.display = 'none';
+
+            // Update confirmation details
+            document.getElementById('appointment-time').textContent = dateTime;
+            document.getElementById('appointment-mode').textContent = `Mode: ${mode}`;
+
+            // Generate a random booking ID
+            const bookingId = 'QC' + Math.floor(10000 + Math.random() * 90000);
+            document.getElementById('booking-id').textContent = `Booking ID: #${bookingId}`;
+
+            // Hide booking section and show confirmation section
+            document.getElementById('booking-section').style.display = 'none';
+            document.getElementById('confirmation-section').style.display = 'block';
+
+            // Scroll to confirmation section
+            document.getElementById('confirmation-section').scrollIntoView({ behavior: 'smooth' });
+        }
+
+        // Function to go back to the homepage section
+        function goToHome() {
+            // Reset the form
+            document.getElementById('user-name').value = '';
+            document.getElementById('user-phone').value = '';
+            document.getElementById('date-time').value = '';
+            document.querySelector('input[name="mode"][value="In-Person"]').checked = true;
+
+            // Hide confirmation section and show booking section
+            document.getElementById('confirmation-section').style.display = 'none';
+            document.getElementById('booking-section').style.display = 'block';
+
+            // Scroll to homepage section
+            document.querySelector('.homepage').scrollIntoView({ behavior: 'smooth' });
+        }
+    </script>
+</body>
+</html>
